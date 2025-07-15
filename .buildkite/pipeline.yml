@@ -1,20 +1,14 @@
-# simple_input_step.yaml
-# This file defines a basic Buildkite pipeline with a single 'input' step.
 
 steps:
-  - input: "Please confirm to proceed with the next stage."
-    label: "User Confirmation"
-    key: "confirm-action"
-    prompt: "Are you sure you want to continue?"
+  - input: "Release details"
     fields:
-      approval_status:
-        type: select
+      - select: "Stream"
+        key: "release-stream"
+        hint: "Which release stream does this belong in? :fork:"
+        required: false
+        default: "beta"
         options:
-          - "Yes, continue"
-          - "No, cancel"
-        default: "Yes, continue"
-        required: true
-        hint: "Select your action."
-      comment:
-        type: text
-        hint: "Optional: Add a comment."
+          - label: "Beta"
+            value: "beta"
+          - label: "Stable"
+            value: "stable"
